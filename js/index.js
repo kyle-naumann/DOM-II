@@ -1,30 +1,24 @@
 // Your code goes here
 
-// `    mouseover`
-//   * `keydown`
-//   * `wheel`
-//   * `load`
-//   * `focus`
-//   * `resize`
-//   * `scroll`
-//   * `select`
-//   * `dblclick`
 
-// let Button = document.querySelector('.container .button');
-// Button.addEventListener('click', (event) => {
-//   event.target.style.backgroundColor = 'green';
-// })
-
-// BUS IMAGE HEADER
 const busImg = document.querySelector(".intro img")
-busImg.addEventListener("mouseover", () => {
-    busImg.style.transform ="scale(1.1)";
-    busImg.style.transition = "all 0.1s"
+
+busImg.addEventListener("mousemove", (e) => {
+    let xAxis = (window.innerWidth / 2 - e.pageX) / 25;
+    let yAxis = (window.innerHeight / 2 - e.pageY) / 25;
+    busImg.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
 })
 
-busImg.addEventListener("mouseleave", () => {
-    busImg.style.transform ="scale(1)";
-})
+busImg.addEventListener("mouseenter", (e) => {
+    busImg.style.transition = "none";
+  
+    busImg.style.transform = "translateZ(150px)";
+  });
+
+busImg.addEventListener("mouseleave", (e) => {
+    busImg.style.transition = "all 0.5s ease";
+    busImg.style.transform = `rotateY(0deg) rotateX(0deg)`;
+  });
 
 const logo = document.querySelector(".logo-heading")
 logo.addEventListener("click", (event) => {
@@ -34,15 +28,14 @@ logo.addEventListener("click", (event) => {
 const titles = document.querySelectorAll('h2')
 titles.forEach(title => {
     title.addEventListener('dblclick', (event) => {
-    event.target.style.color = 'purple'
+    event.target.style.backgroundcolor = 'pink'
   })
 })
 
-const pics = document.querySelectorAll('.img-content')
+const pics = document.querySelectorAll('.img-content img')
 pics.forEach(pic => {
     pic.addEventListener('keydown', (event) => {
-    event.style.transform = "scale(1.1)"
-    event.style.transition = "all 0.1s"
+    event.style.color = 'opacity: 0.5'
   })
 })
 
@@ -54,24 +47,25 @@ pics.forEach(pic => {
 })
 
 window.addEventListener('scroll', () => {
-    console.log('window.scrollY', window.scrollY)
-    if (window.scrollY >= 5000) {
-      alert("scrolled")
+    console.log('window.scroll', window.scrollY)
+    if (window.scrollY >= 10000) {
+      alert("stop scrolling")
     }
   })
 
 const words = document.querySelectorAll('a')
-    word.addEventListener('select', (event) => {
+    words.addEventListener('select', (event) => {
         event.target.style.backgroundColor = 'blue'
     })
 
-const words = document.querySelectorAll('container nav-container')
-    word.addEventListener('zoom', (e) => {
-        e.stopPropagation();
-        alert("Not the NAV!!!")
+const wordB = document.querySelectorAll('container nav-container')
+    wordB.addEventListener('zoom', (e) => {
+        e.target.style.backgroundColor = 'green'
+        e.stopImmediatePropagation()
     })
 
-    const words = document.querySelectorAll('a')
-    word.addEventListener('click', (event) => {
-        event.preventDefault();
+const botBtns = document.querySelector('.btn')
+
+    botBtns.addEventListener('mousedown', (e) => {
+        e.target.style.backgroundcolor = 'green'
     })
